@@ -5,9 +5,13 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/12379Monty/HCC5hmc.svg?branch=master)](https://travis-ci.com/12379Monty/HCC5hmc)
 <!-- badges: end -->
 
-The goal of omicScaleR is to …
+This package contains data on genome-wide mapping of
+5-hydroxymethylcytosines in circulating cell-free DNA as reported in Cai
+J, Chen L, Zhang Z, et al. Gut 2019;68:2195–2205.
 
 ## Installation
 
@@ -16,7 +20,7 @@ installed with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("12379Monty/omicScaleR")
+devtools::install_github("12379Monty/HCC5hmc")
 ```
 
 ## Example
@@ -24,15 +28,15 @@ devtools::install_github("12379Monty/omicScaleR")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(omicScaleR)
+library(HCC5hmc)
 ## basic example code
 ```
 
 -----
 
-Please note that the ‘omicScaleR’ project is released with a
-[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By
-contributing to this project, you agree to abide by its terms.
+Please note that the ‘HCC5hmc’ project is released with a [Contributor
+Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this
+project, you agree to abide by its terms.
 
 <!--
 
