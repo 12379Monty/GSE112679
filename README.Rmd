@@ -28,6 +28,7 @@ genome-wide mapping of 5-hydroxymethylcytosines
 in circulating cell-free DNA as reported in Cai et al. (2019) [@Cai:2019aa].
 
 
+
 ## Data sets  
 
 * samples  
@@ -54,8 +55,11 @@ library(GSE112679)
 ## basic example code
 ```
 
+## Package page
 
-# References
+* https://12379monty.github.io/GSE112679/
+
+## References
 <div id="refs"></div>
 
 
