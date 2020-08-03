@@ -2,8 +2,8 @@
 output: html_document
 title: GSE112679
 #output: github_document
-bibliography: docs/bibFile.bib
-csl: docs/cell-numeric.csl
+bibliography: docs/_bibFiles/bibFile.bib
+csl: docs/_bibFiles/cell-numeric.csl
 link-citations: true
 ---
 

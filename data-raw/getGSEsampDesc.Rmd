@@ -1,0 +1,292 @@
+---
+title: "Read Data for NCBI GEO Series GSE112679"
+author: "Francois.collin@gmail.com"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    code_folding: show
+    toc: false
+    # does this have an effect
+    fig_caption: yes
+    # this has no effect
+    number_sections: yes
+    css: ../docs/_pandocFiles/github-markdown.css
+    #css: ../docs/_pandocFiles/pandoc3.css
+bibliography: ../docs/_bibFiles/bibFile.bib
+csl: ../docs/_bibFiles/cell-numeric.csl
+#biblio-style: acm
+link-citations: true
+vignette: >
+ %\VignetteEncoding{UTF-8}
+ %\VignetteEngine{knitr::rmarkdown}
+---
+
+
+```{r GlobalOptions, results="hide", include=FALSE, cache=FALSE}
+knitr::opts_knit$set(stop_on_error = 2L) #really make it stop
+#knitr::dep_auto()
+```
+<!-- ######################################################################## -->
+
+
+```{r Prelims, include=FALSE, echo=FALSE, results='hide', message=FALSE,cache=F}
+
+ FN <- "getGSEsampDesc"
+if(sum(grepl(FN, list.files()))==0) stop("Check FN")
+
+ suppressPackageStartupMessages(require(methods))
+ suppressPackageStartupMessages(require(rmarkdown))
+ suppressPackageStartupMessages(require(bookdown))
+
+ suppressPackageStartupMessages(require(knitr))
+ options(stringsAsFactors=F)
+
+ suppressPackageStartupMessages(require(data.table)) 
+ options(datatable.fread.datatable=F)
+
+ suppressPackageStartupMessages(require(plyr))
+ suppressPackageStartupMessages(require(dplyr))
+ suppressPackageStartupMessages(require(magrittr))
+
+ # Shotcuts for knitting and redering while in R session (Invoke interactive R from R/Scripts folder)
+ kk <- function(n='') knitr::knit2html(paste("t", n, sep=''), envir=globalenv(),
+       output=paste(FN,".html", sep=''))
+
+ rr <- function(n='') rmarkdown::render(paste("t", n, sep=''), envir=globalenv(),
+       output_file=paste(FN,".html", sep='')) ##, output_dir='Scripts')
+
+ bb <- function(n='') browseURL(paste(FN,".html", sep=''))
+
+ # The usual shotcuts
+ zz <- function(n='') source(paste("t", n, sep=''))
+
+ # Using relative paths:
+ # Assuming script is run from GSE112679/data-raw/
+ WRKDIR <- ('..')
+
+ # Not needed if path is relative ...
+ if(!file.exists(WRKDIR)) stop("WRKDIR ERROR: ", WRKDIR)
+
+ # do once
+ #setwd(WRKDIR)
+
+ # file rmarkdown file management options: cache, figures
+ cache_DIR <- file.path('cache/rdGEData/')
+ suppressPackageStartupMessages(dir.create(cache_DIR, recursive=T))
+ opts_chunk$set(cache.path=cache_DIR)
+
+ figure_DIR <- file.path('figures/rdGEData/')
+ suppressPackageStartupMessages(dir.create(figure_DIR, recursive=T))
+ opts_chunk$set(fig.path=paste0(figure_DIR))
+
+ data_DIR <- '../data'
+ if(!file.exists(data_DIR)) stop("data_DIR ERROR: ", data_DIR)
+
+
+```
+<!-- ######################################################################## -->
+
+
+*** 
+
+## Abstract
+
+This script assembles R object from data downloaded from 
+[NCBI/Gene Expression Omnibus Database (GSE112679)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679).
+The R objects will be assembled into an R dat package for
+easy access.  The objects are constructed to parallel the
+analyses of these data are reported in
+Cai et al. (2019) [@Cai:2019aa]).  
+
+
+
+## Set Analysis Parameters
+ 
+```{r setAnalysisParameters, echo=T, cache=F}
+
+ GSE_ID <- 'GSE112679'
+
+ # extData
+ ################################
+ if(file.exists(file.path('../../extData'))) 
+ EXT_DIR <- file.path('../../extData') else stop("Speficy EXT_DIR")
+
+ # GSE_Data
+ ###################################
+ if(file.exists(file.path(EXT_DIR, GSE_ID)))
+ GSE_DATA_DIR <- file.path(EXT_DIR,GSE_ID) else stop("Speficy GSE_DATA_DIR")
+
+```
+
+## Get Sample Description Data
+
+```{r readSampDesc,cache=T, cach.vars='sampDesc_frm', eval=T, echo=T, fig.height=6, fig.width=11}
+
+# kelly's colors - https://i.kinja-img.com/gawker-media/image/upload/1015680494325093012.JPG
+ # https://gist.github.com/ollieglass/f6ddd781eeae1d24e391265432297538
+ #KellyColors.vec <-  see web site
+ # REMOVED '#F2F3F4' in first entry
+ col_vec <-  c('#222222', '#F3C300', '#875692', '#F38400', '#A1CAF1', 
+              '#BE0032', '#C2B280', '#848482', '#008856', '#E68FAC', '#0067A5',
+              '#F99379', '#604E97', '#F6A600', '#B3446C', '#DCD300', '#882D17',
+              '#8DB600', '#654522', '#E25822', '#2B3D26')
+
+ suppressPackageStartupMessages(require(GEOquery))
+
+ GSEMatrix_obj <- getGEO(GSE_ID, GSEMatrix=T)
+ show(GSEMatrix_obj)
+
+ #DT::datatable(pData(phenoData(GSEMatrix_obj[[1]])))
+
+ KEY_FIELDS <- grep(':ch1$', names(pData(phenoData(GSEMatrix_obj[[1]]))), value=T)
+
+ sampType_vec <- sapply(
+ strsplit(as.character(pData(phenoData(GSEMatrix_obj[[1]]))[,"title"]), 
+ split='_'), function(X) X[1])
+
+ sampNo_vec <- sapply(
+ strsplit(as.character(pData(phenoData(GSEMatrix_obj[[1]]))[,"title"]), 
+ split='_'), function(X) X[2])
+
+ bioSamples_vec <- sapply(
+ strsplit(as.character(pData(phenoData(GSEMatrix_obj[[1]]))[,"relation"]), 
+ split='/'), function(X) rev(X)[1])
+
+ SRA_vec <- sapply(
+ strsplit(as.character(pData(phenoData(GSEMatrix_obj[[1]]))[,"relation.1"]), 
+ split='='), function(X) rev(X)[1])
+
+ fileName_vec <- sapply(
+ strsplit(as.character(pData(phenoData(GSEMatrix_obj[[1]]))[,"supplementary_file_1"]), 
+ split='/'), function(X) rev(X)[1])
+
+ sampDesc_frm <- data.frame(
+   geoAcc=pData(phenoData(GSEMatrix_obj[[1]]))[,"geo_accession"],
+   title=pData(phenoData(GSEMatrix_obj[[1]]))[,"title"],
+   sampType=sampType_vec,
+   sampNo=sampNo_vec,
+   bioSample=bioSamples_vec, 
+   SRA=SRA_vec,
+   fileName=fileName_vec,
+   pData(phenoData(GSEMatrix_obj[[1]]))[, KEY_FIELDS])
+
+ names(sampDesc_frm) <- 
+ sub('bclc.stage.ch1', 'stage',
+ sub('diagnosis.ch1', 'Dx',
+ sub('tissue.subtype.ch1', 'tissueSubtype',
+ sub('tissue.ch1', 'tissue',
+ sub('training.validation.group.ch1', 'trainValGroup',
+ names(sampDesc_frm))))))
+
+ # Make sure fileName and geoAcc match
+ fileNamegeoAcc.vec <- sapply(
+ strsplit(as.character(sampDesc_frm$fileName), split='_'), '[',1)
+ if(sum(fileNamegeoAcc.vec!= sampDesc_frm$geoAcc))
+ stop("geoAcc/fileName Mismatch")
+
+ str(sampDesc_frm)
+ 
+ cat("geoAcc is unique - use as rownames:\n")
+ with(sampDesc_frm, table(table(geoAcc, exclude=NULL)))
+ rownames(sampDesc_frm) <- sampDesc_frm$geoAcc
+ 
+ cat("SRA is unique:\n")
+ with(sampDesc_frm, table(table(SRA, exclude=NULL)))
+ 
+ cat("bioSample is unique:\n")
+ with(sampDesc_frm, table(table(bioSample, exclude=NULL)))
+ 
+ cat("title is unique:\n")
+ with(sampDesc_frm, table(table(title, exclude=NULL)))
+
+ cat("Some Samples Match bu sampNo:")
+ with(sampDesc_frm, table(table(sampNo, exclude=NULL)))
+
+ # NOTE: examination of the data indicate that sampNo cannot be used
+ # to match Blood with TU or TI samples
+
+DEPRICATED <- function() {
+ NoSamp.tbl <- with(sampDesc_frm, table(sampNo, exclude=NULL))
+
+ sampDesc_frm <- merge(
+  data.frame(sampNo=names(nSamp.tbl), nSamp=as.vector(nSamp.tbl)),
+  sampDesc_frm, by='sampNo', all.y=T)
+}#DEPRICATED
+
+ sampDesc_frm <- sampDesc_frm[with(sampDesc_frm,
+  order(as.numeric(sampNo), title)),]
+
+
+ # Shorten trainValGroup
+ sampDesc_frm$trainValGroup <- 
+ sub('Training', 'Train',
+ sub('Validation', 'Val',
+ sampDesc_frm$trainValGroup))
+
+ # Shorten Dx
+ sampDesc_frm$Dx <- 
+ sub('Benign liver lesions', 'Benign',
+ sub('Liver cirrhosis', 'Cirrhosis',
+ sampDesc_frm$Dx))
+
+
+ trainValGroupDX.tbl <-  
+ with(sampDesc_frm, 
+ table(Dx_tissue=paste0(Dx,'_',tissue), trainValGroup, exclude=NULL))
+
+ trainValGroupDX.tbl
+
+ barplot(trainValGroupDX.tbl, beside=T, legend=T, 
+    col=col_vec[1:nrow(trainValGroupDX.tbl)])
+ title("Sample Counts by Tissue Type")
+
+
+ # For consistency with previous code, we will use Outcome as an alias to Dx,
+ # and sampID as an alias to geoAcc
+ sampDesc_frm$outcome <- sampDesc_frm$Dx
+ sampDesc_frm$sampID <- sampDesc_frm$geoAcc
+
+ cat("Cai et al. combine Beign+Healthy and Cirrhosis+HCC\n")
+ cat("Create secondary outcome\n")
+ sampDesc_frm$outcome2 <- with(sampDesc_frm, 
+ ifelse(Dx %in% c("Benign", "Healthy"), 'BenignHealthy',
+ ifelse(Dx %in% c("Cirrhosis", "CHB"), 'CirrhosisCHB', Dx)))
+
+ with(sampDesc_frm, table(trainValGroup, outcome2, exclude=NULL))
+ 
+ cat("Also want outcome3 == HCC or nonHCC\n")
+ sampDesc_frm$outcome3 <- with(sampDesc_frm,
+ ifelse(Dx == 'HCC', 'HCC', 'nonHCC'))
+
+ with(sampDesc_frm, table(trainValGroup, outcome3, exclude=NULL))
+
+ usethis::use_data(sampDesc_frm, overwrite=T)
+
+```
+
+```{r DTsampDesc}
+
+ DT::datatable(sampDesc_frm,  options=list(pageLength = 18))
+
+```
+
+```{r, echo=FALSE}
+ sessionInfo()
+```
+
+
+```{r, echo=FALSE}
+  knit_exit()
+```
+
+<!-- ######################################################################## -->
+
+
+<!-- To run
+# nohup Rscript -e "knitr::knit2html('getGSEsampDesc.Rmd')" > getGSEsampDesc.log  &
+
+# Or
+# nohup Rscript -e "rmarkdown::render('getGSEsampDesc.Rmd')" > getGSEsampDesc.log  &
+
+-->
+
