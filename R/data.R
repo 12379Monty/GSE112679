@@ -1,4 +1,4 @@
-#' sampDesc_frm data set documentation
+#' GSE112679_sampDesc_frm data set documentation
 #'
 #' A dataset containing describing the samples
 #'
@@ -22,5 +22,5 @@
 #' outcome3     : chr  "nonHCC" "HCC" "HCC" "nonHCC" ...
 #' }
 #' @source See data-raw/getGSEsampDesc.Rmd
-"sampDesc_frm"
+"GSE112679_sampDesc_frm"
 

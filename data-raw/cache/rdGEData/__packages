@@ -1,10 +1,4 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 rmarkdown
 bookdown
 knitr
@@ -12,7 +6,6 @@ data.table
 plyr
 dplyr
 magrittr
-parallel
 BiocGenerics
 Biobase
 GEOquery

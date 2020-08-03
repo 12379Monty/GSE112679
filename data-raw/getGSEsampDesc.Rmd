@@ -260,7 +260,17 @@ DEPRICATED <- function() {
 
  with(sampDesc_frm, table(trainValGroup, outcome3, exclude=NULL))
 
- usethis::use_data(sampDesc_frm, overwrite=T)
+ # THIS DOESNT WORK
+ #usethis::use_data(get(paste0(GSE_ID, '_sampDesc_frm')), overwrite=T)
+
+ assign(paste0(GSE_ID, '_sampDesc_frm'),sampDesc_frm)
+ save(list=paste0(GSE_ID, '_sampDesc_frm'), 
+      file=file.path(data_DIR, paste0(GSE_ID, '_sampDesc_frm', '.rda')))
+ rm(list=paste0(GSE_ID, '_sampDesc_frm'))
+
+ # DO WE HAVE TO DO THIS?
+ #GSE112679_sampDesc_frm <- sampDesc_frm
+ #usethis::use_data(GSE112679_sampDesc_frm, overwrite=T)
 
 ```
 
