@@ -1,5 +1,12 @@
 ---
-output: github_document
+output: html_document
+title: GSE112679
+#output: github_document
+bibliography: docs/bibFile.bib
+csl: docs/cell-numeric.csl
+link-citations: true
+---
+
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,15 +20,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-# HCC5hmc
 
-<!-- badges: start -->
-[![Travis build status](https://travis-ci.com/12379Monty/HCC5hmc.svg?branch=master)](https://travis-ci.com/12379Monty/HCC5hmc)
-<!-- badges: end -->
+This package contains data from NCBI GEO 
+[Series GSE112679](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679).
+Data methylation profiles were collected to investigate
+genome-wide mapping of 5-hydroxymethylcytosines
+in circulating cell-free DNA as reported in Cai et al. (2019) [@Cai:2019aa].
 
-This package contains data on genome-wide mapping of 5-hydroxymethylcytosines
-in circulating cell-free DNA as reported in Cai J, Chen L, Zhang Z, et al. Gut
-2019;68:2195–2205.
+
+## Data sets  
+
+* samples  
+
+* table 1  
+
+* table 2  
+
 
 ## Installation
 
@@ -29,21 +43,25 @@ The development version from [GitHub](https://github.com/) can be installed with
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("12379Monty/HCC5hmc")
+devtools::install_github("12379Monty/GSE112679")
 ```
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(HCC5hmc)
+library(GSE112679)
 ## basic example code
 ```
 
 
+# References
+<div id="refs"></div>
+
+
 -----
 
-Please note that the 'HCC5hmc' project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the 'GSE112679' project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
 
 <!--
 

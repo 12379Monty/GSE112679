@@ -1,13 +1,14 @@
-Package: HCC5hmc
-Title: What the Package Does (One Line, Title Case)
+Package: GSE112679
+Title: Data for NCBI GEO Series GSE112679
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R:
+    person(given = "Francois",
+           family = "Collin",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "francois.collin@gmail.com",
+           comment = c(ORCID = "0000-0002-6202-0141"))
+Description: Data for NCBI GEO Series GSE112679 are organized
+    into a set of R objects convenient for analyis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
