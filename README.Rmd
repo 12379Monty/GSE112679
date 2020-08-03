@@ -1,6 +1,6 @@
 ---
 output: html_document
-title: GSE112679
+title: GSE112679 R Data Package
 #output: github_document
 bibliography: docs/_bibFiles/bibFile.bib
 csl: docs/_bibFiles/cell-numeric.csl
