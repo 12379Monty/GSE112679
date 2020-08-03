@@ -1,0 +1,12 @@
+^vignettes/*\.log$
+^LICENSE\.md$
+R.cmds
+git.cmds
+^data-raw$
+^vignettes/articles$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.travis\.yml$
+R/data_ignored.R
+^README\.Rmd$
