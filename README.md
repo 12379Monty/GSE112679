@@ -1,16 +1,17 @@
+GSE112679 R Data Package
+================
 
 -----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# GSE112679
 
 This package contains data from NCBI GEO [Series
 GSE112679](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679).
 Data methylation profiles were collected to investigate genome-wide
 mapping of 5-hydroxymethylcytosines in circulating cell-free DNA as
 reported in Cai et al. (2019)
-\[<span class="citeproc-not-found" data-reference-id="cai:2019aa">**???**</span>\].
+<!-- [@Cai:2019aa] pandoc citations dont work on github -->
+(<https://gut.bmj.com/content/68/12/2195>).
 
 ## Data sets
 
@@ -20,7 +21,6 @@ reported in Cai et al. (2019)
 
   - table 2
 
-  - 
 ## Installation
 
 The development version from [GitHub](https://github.com/) can be
@@ -40,11 +40,14 @@ library(GSE112679)
 ## basic example code
 ```
 
-# References
+## Package page
 
-<div id="refs">
+  - <https://12379monty.github.io/GSE112679/>
 
-</div>
+<!-- DOESNT WORK WITH GITHUB
+## References
+<div id="refs"></div>
+-->
 
 -----
 
@@ -55,5 +58,8 @@ project, you agree to abide by its terms.
 <!--
 
 Rscript -e "rmarkdown::render('README.Rmd')"
+
+# nohup Rscript -e "rmarkdown::render('README.Rmd')" > README.log  &
+
 
 -->

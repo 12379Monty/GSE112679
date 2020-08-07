@@ -1,7 +1,6 @@
 ---
-output: html_document
 title: GSE112679 R Data Package
-#output: github_document
+output: github_document
 bibliography: docs/_bibFiles/bibFile.bib
 csl: docs/_bibFiles/cell-numeric.csl
 link-citations: true
@@ -73,5 +72,8 @@ Please note that the 'GSE112679' project is released with a [Contributor Code of
 <!--
 
 Rscript -e "rmarkdown::render('README.Rmd')"
+
+# nohup Rscript -e "rmarkdown::render('README.Rmd')" > README.log  &
+
 
 -->
