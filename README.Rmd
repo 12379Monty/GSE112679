@@ -1,6 +1,6 @@
 ---
 title: GSE112679 R Data Package
-output: github_document
+output: github_document   ### will keep md file!!!
 bibliography: docs/_bibFiles/bibFile.bib
 csl: docs/_bibFiles/cell-numeric.csl
 link-citations: true
@@ -25,8 +25,9 @@ This package contains data from NCBI GEO
 Data methylation profiles were collected to investigate
 genome-wide mapping of 5-hydroxymethylcytosines
 in circulating cell-free DNA as reported in Cai et al. (2019)
-<!-- [@Cai:2019aa] pandoc citations dont work on github -->
 (https://gut.bmj.com/content/68/12/2195).
+
+<!-- [@Cai:2019aa] pandoc citations dont work on github -->
 
 
 

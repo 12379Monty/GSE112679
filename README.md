@@ -10,8 +10,9 @@ GSE112679](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679).
 Data methylation profiles were collected to investigate genome-wide
 mapping of 5-hydroxymethylcytosines in circulating cell-free DNA as
 reported in Cai et al. (2019)
-<!-- [@Cai:2019aa] pandoc citations dont work on github -->
 (<https://gut.bmj.com/content/68/12/2195>).
+
+<!-- [@Cai:2019aa] pandoc citations dont work on github -->
 
 ## Data sets
 
