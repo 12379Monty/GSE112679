@@ -1,4 +1,4 @@
-#' GSE112679_sampDesc_frm data set documentation
+#' GSE112679_sampDesc data set documentation
 #'
 #' A dataset containing describing the samples
 #'
@@ -21,5 +21,5 @@
 #'   \item{outcome2}{     : chr  "CirrhosisCHB" "HCC" "HCC" "CirrhosisCHB" ...}
 #'   \item{outcome3}{     : chr  "nonHCC" "HCC" "HCC" "nonHCC" ...}
 #' }
-"GSE112679_sampDesc_frm"
+"GSE112679_sampDesc"
 
