@@ -1,79 +1,0 @@
-
-
-processing file: getGSEsampDesc.Rmd
-  |                                                                              |                                                                      |   0%  |                                                                              |.....                                                                 |   7%
-   inline R code fragments
-
-  |                                                                              |.........                                                             |  13%
-label: GlobalOptions (with options) 
-List of 3
- $ results: chr "hide"
- $ include: logi FALSE
- $ cache  : logi FALSE
-
-  |                                                                              |..............                                                        |  20%
-  ordinary text without R code
-
-  |                                                                              |...................                                                   |  27%
-label: Prelims (with options) 
-List of 5
- $ include: logi FALSE
- $ echo   : logi FALSE
- $ results: chr "hide"
- $ message: logi FALSE
- $ cache  : symbol F
-
-  |                                                                              |.......................                                               |  33%
-  ordinary text without R code
-
-  |                                                                              |............................                                          |  40%
-label: setAnalysisParameters (with options) 
-List of 2
- $ echo : symbol T
- $ cache: symbol F
-
-  |                                                                              |.................................                                     |  47%
-  ordinary text without R code
-
-  |                                                                              |.....................................                                 |  53%
-label: readSampDesc (with options) 
-List of 6
- $ cache     : symbol T
- $ cach.vars : chr "sampDesc"
- $ eval      : symbol T
- $ echo      : symbol T
- $ fig.height: num 6
- $ fig.width : num 11
-
-trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE112nnn/GSE112679/matrix/GSE112679_series_matrix.txt.gz'
-Content type 'application/x-gzip' length 91700 bytes (89 KB)
-==================================================
-downloaded 89 KB
-
-  |                                                                              |..........................................                            |  60%
-  ordinary text without R code
-
-  |                                                                              |...............................................                       |  67%
-label: DTsampDesc
-  |                                                                              |...................................................                   |  73%
-  ordinary text without R code
-
-  |                                                                              |........................................................              |  80%
-label: unnamed-chunk-1 (with options) 
-List of 1
- $ echo: logi FALSE
-
-  |                                                                              |.............................................................         |  87%
-  ordinary text without R code
-
-  |                                                                              |.................................................................     |  93%
-label: unnamed-chunk-2 (with options) 
-List of 1
- $ echo: logi FALSE
-
-
-output file: getGSEsampDesc.knit.md
-
-/usr/local/bin/pandoc +RTS -K512m -RTS getGSEsampDesc.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output getGSEsampDesc.html --email-obfuscation none --self-contained --standalone --section-divs --template /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --number-sections --css ../docs/_pandocFiles/github-markdown.css --variable 'theme:bootstrap' --include-in-header /var/folders/wd/v5lfllh152x0hwhtr773cnmnjqcpdt/T//Rtmp93ztlu/rmarkdown-str155402d0fb6c9.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=show --variable code_menu=1 --filter /usr/local/bin/pandoc-citeproc 
-
-Output created: getGSEsampDesc.html

@@ -1,0 +1,135 @@
+
+
+processing file: getGSEData.Rmd
+  |                                                                              |                                                                      |   0%  |                                                                              |...                                                                   |   4%
+   inline R code fragments
+
+  |                                                                              |.....                                                                 |   7%
+label: GlobalOptions (with options) 
+List of 3
+ $ results: chr "hide"
+ $ include: logi FALSE
+ $ cache  : logi FALSE
+
+  |                                                                              |........                                                              |  11%
+  ordinary text without R code
+
+  |                                                                              |..........                                                            |  15%
+label: Prelims (with options) 
+List of 5
+ $ include: logi FALSE
+ $ echo   : logi FALSE
+ $ results: chr "hide"
+ $ message: logi FALSE
+ $ cache  : symbol F
+
+  |                                                                              |.............                                                         |  19%
+  ordinary text without R code
+
+  |                                                                              |................                                                      |  22%
+label: setAnalysisParameters (with options) 
+List of 2
+ $ echo : symbol T
+ $ cache: symbol F
+
+  |                                                                              |..................                                                    |  26%
+  ordinary text without R code
+
+  |                                                                              |.....................                                                 |  30%
+label: utilFunctions (with options) 
+List of 1
+ $ cache: symbol F
+
+  |                                                                              |.......................                                               |  33%
+  ordinary text without R code
+
+  |                                                                              |..........................                                            |  37%
+label: readSampDesc (with options) 
+List of 6
+ $ cache     : symbol T
+ $ cach.vars : chr "sampDesc"
+ $ eval      : symbol T
+ $ echo      : symbol T
+ $ fig.height: num 6
+ $ fig.width : num 11
+
+  |                                                                              |.............................                                         |  41%
+  ordinary text without R code
+
+  |                                                                              |...............................                                       |  44%
+label: DTsampDesc
+  |                                                                              |..................................                                    |  48%
+  ordinary text without R code
+
+  |                                                                              |....................................                                  |  52%
+label: readTUTI (with options) 
+List of 4
+ $ eval      : symbol T
+ $ cache     : symbol T
+ $ cache.vars: language c("TUTI_featureCount", "genes_annot")
+ $ message   : symbol F
+
+  |                                                                              |.......................................                               |  56%
+  ordinary text without R code
+
+  |                                                                              |.........................................                             |  59%
+label: readTrain (with options) 
+List of 4
+ $ eval      : symbol T
+ $ cache     : symbol T
+ $ cache.vars: chr "Train_featureCount"
+ $ message   : symbol F
+
+  |                                                                              |............................................                          |  63%
+  ordinary text without R code
+
+  |                                                                              |...............................................                       |  67%
+label: readVal-1 (with options) 
+List of 4
+ $ eval      : symbol T
+ $ cache     : symbol T
+ $ cache.vars: chr "Val1_featureCount"
+ $ message   : symbol F
+
+  |                                                                              |.................................................                     |  70%
+  ordinary text without R code
+
+  |                                                                              |....................................................                  |  74%
+label: readVal-2 (with options) 
+List of 4
+ $ eval      : symbol T
+ $ cache     : symbol T
+ $ cache.vars: chr "Val2_featureCount"
+ $ message   : symbol F
+
+  |                                                                              |......................................................                |  78%
+   inline R code fragments
+
+  |                                                                              |.........................................................             |  81%
+label: save (with options) 
+List of 2
+ $ cache     : symbol T
+ $ cache.vars: chr ""
+
+  |                                                                              |............................................................          |  85%
+  ordinary text without R code
+
+  |                                                                              |..............................................................        |  89%
+label: unnamed-chunk-1 (with options) 
+List of 1
+ $ echo: logi FALSE
+
+  |                                                                              |.................................................................     |  93%
+  ordinary text without R code
+
+  |                                                                              |...................................................................   |  96%
+label: unnamed-chunk-2 (with options) 
+List of 1
+ $ echo: logi FALSE
+
+
+output file: getGSEData.knit.md
+
+/usr/local/bin/pandoc +RTS -K512m -RTS getGSEData.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output getGSEData.html --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --template /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --number-sections --css ../docs/_pandocFiles/github-markdown.css --variable 'theme:bootstrap' --include-in-header /var/folders/wd/v5lfllh152x0hwhtr773cnmnjqcpdt/T//RtmpsHiJ6k/rmarkdown-str171fa33c01610.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=show --variable code_menu=1 --filter /usr/local/bin/pandoc-citeproc 
+
+Output created: getGSEData.html
