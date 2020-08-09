@@ -12,15 +12,25 @@ mapping of 5-hydroxymethylcytosines in circulating cell-free DNA as
 reported in Cai et al. (2019)
 (<https://gut.bmj.com/content/68/12/2195>).
 
-<!-- [@Cai:2019aa] pandoc citations dont work on github -->
+<!-- [@Cai:2019aa] pandoc citations dont work on github (github_document?) -->
 
 ## Data sets
 
-  - samples
+``` r
+  library(GSE112679)
 
-  - table 1
+  tmp <- data(package='GSE112679')
+  knitr::kable(tmp$results[, c("Item", "Title")])
+```
 
-  - table 2
+| Item                | Title                                                                                |
+| :------------------ | :----------------------------------------------------------------------------------- |
+| TUTI\_featureCount  | TUTI\_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples |
+| Train\_featureCount | Train\_featureCount - a matrix of feature counts for the samples in the training set |
+| Val1\_featureCount  | Val1\_featureCount - a matrix of feature counts for the samples in validation set 1  |
+| Val2\_featureCount  | Val2\_featureCount - a matrix of feature counts for the samples in validation set 2  |
+| genes\_annot        | genes\_annot - a data frame describing the features                                  |
+| sampDesc            | sampDesc - a data frame describing the samples in the GSE112679 dataset              |
 
 ## Installation
 
@@ -34,11 +44,38 @@ devtools::install_github("12379Monty/GSE112679")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(GSE112679)
-## basic example code
+library(magrittr)
+
+with(sampDesc, table(sampType, trainValGroup, exclude=NULL))
+#>         trainValGroup
+#> sampType Train Val-1 Val-2 <NA>
+#>    blood  1120  1194   240    0
+#>    TI        0     0     0   26
+#>    TU        0     0     0   26
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome, trainValGroup, exclude=NULL))
+#>            trainValGroup
+#> outcome     Train Val-1 Val-2
+#>   Benign      253   132     3
+#>   CHB         190    96     0
+#>   Cirrhosis    73    33     0
+#>   HCC         335   809    60
+#>   Healthy     269   124   177
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome2, trainValGroup, exclude=NULL))
+#>                trainValGroup
+#> outcome2        Train Val-1 Val-2
+#>   BenignHealthy   522   256   180
+#>   CirrhosisCHB    263   129     0
+#>   HCC             335   809    60
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome3, trainValGroup, exclude=NULL))
+#>         trainValGroup
+#> outcome3 Train Val-1 Val-2
+#>   HCC      335   809    60
+#>   nonHCC   785   385   180
 ```
 
 ## Package page

@@ -3,14 +3,15 @@
 \docType{data}
 \name{TUTI_featureCount}
 \alias{TUTI_featureCount}
-\title{TUTI_featureCount data set documentation}
+\title{TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples}
 \format{
-An object of class \code{data.frame} with 19100 rows and 52 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 19100 rows and 52 columns.
 }
 \usage{
 TUTI_featureCount
 }
 \description{
-TUTI_featureCount description goes here
+TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples
+rows are feature; columns are samples.
 }
 \keyword{datasets}

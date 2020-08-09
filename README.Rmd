@@ -27,17 +27,20 @@ genome-wide mapping of 5-hydroxymethylcytosines
 in circulating cell-free DNA as reported in Cai et al. (2019)
 (https://gut.bmj.com/content/68/12/2195).
 
-<!-- [@Cai:2019aa] pandoc citations dont work on github -->
+<!-- [@Cai:2019aa] pandoc citations dont work on github (github_document?) -->
 
 
 
 ## Data sets  
 
-* samples  
+```{r dataSets}
+  library(GSE112679)
 
-* table 1  
+  tmp <- data(package='GSE112679')
+  knitr::kable(tmp$results[, c("Item", "Title")])
 
-* table 2  
+```
+
 
 
 ## Installation
@@ -48,13 +51,22 @@ The development version from [GitHub](https://github.com/) can be installed with
 # install.packages("devtools")
 devtools::install_github("12379Monty/GSE112679")
 ```
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(GSE112679)
-## basic example code
+library(magrittr)
+
+with(sampDesc, table(sampType, trainValGroup, exclude=NULL))
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome, trainValGroup, exclude=NULL))
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome2, trainValGroup, exclude=NULL))
+
+with(sampDesc %>% dplyr::filter(sampType=='blood'), table(outcome3, trainValGroup, exclude=NULL))
+
 ```
 
 ## Package page

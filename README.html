@@ -605,22 +605,83 @@ body {
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <p>This package contains data from NCBI GEO <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679">Series GSE112679</a>. Data methylation profiles were collected to investigate genome-wide mapping of 5-hydroxymethylcytosines in circulating cell-free DNA as reported in Cai et al. (2019) (<a href="https://gut.bmj.com/content/68/12/2195">https://gut.bmj.com/content/68/12/2195</a>).</p>
-<!-- [@Cai:2019aa] pandoc citations dont work on github -->
+<!-- [@Cai:2019aa] pandoc citations dont work on github (github_document?) -->
 
 <h2 id="data-sets">Data sets</h2>
-<ul>
-<li><p>samples</p></li>
-<li><p>table 1</p></li>
-<li><p>table 2</p></li>
-</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>  <span class="kw">library</span>(GSE112679)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  tmp &lt;-<span class="st"> </span><span class="kw">data</span>(<span class="dt">package=</span><span class="st">&#39;GSE112679&#39;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  knitr<span class="op">::</span><span class="kw">kable</span>(tmp<span class="op">$</span>results[, <span class="kw">c</span>(<span class="st">&quot;Item&quot;</span>, <span class="st">&quot;Title&quot;</span>)])</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Item</th>
+<th align="left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TUTI_featureCount</td>
+<td align="left">TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples</td>
+</tr>
+<tr class="even">
+<td align="left">Train_featureCount</td>
+<td align="left">Train_featureCount - a matrix of feature counts for the samples in the training set</td>
+</tr>
+<tr class="odd">
+<td align="left">Val1_featureCount</td>
+<td align="left">Val1_featureCount - a matrix of feature counts for the samples in validation set 1</td>
+</tr>
+<tr class="even">
+<td align="left">Val2_featureCount</td>
+<td align="left">Val2_featureCount - a matrix of feature counts for the samples in validation set 2</td>
+</tr>
+<tr class="odd">
+<td align="left">genes_annot</td>
+<td align="left">genes_annot - a data frame describing the features</td>
+</tr>
+<tr class="even">
+<td align="left">sampDesc</td>
+<td align="left">sampDesc - a data frame describing the samples in the GSE112679 dataset</td>
+</tr>
+</tbody>
+</table>
 <h2 id="installation">Installation</h2>
 <p>The development version from <a href="https://github.com/">GitHub</a> can be installed with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;12379Monty/GSE112679&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;12379Monty/GSE112679&quot;</span>)</span></code></pre></div>
 <h2 id="example">Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(GSE112679)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## basic example code</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(GSE112679)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">with</span>(sampDesc, <span class="kw">table</span>(sampType, trainValGroup, <span class="dt">exclude=</span><span class="ot">NULL</span>))</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;         trainValGroup</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; sampType Train Val-1 Val-2 &lt;NA&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;    blood  1120  1194   240    0</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt;    TI        0     0     0   26</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt;    TU        0     0     0   26</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="kw">with</span>(sampDesc <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sampType<span class="op">==</span><span class="st">&#39;blood&#39;</span>), <span class="kw">table</span>(outcome, trainValGroup, <span class="dt">exclude=</span><span class="ot">NULL</span>))</span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;            trainValGroup</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; outcome     Train Val-1 Val-2</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt;   Benign      253   132     3</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;   CHB         190    96     0</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt;   Cirrhosis    73    33     0</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt;   HCC         335   809    60</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt;   Healthy     269   124   177</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="kw">with</span>(sampDesc <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sampType<span class="op">==</span><span class="st">&#39;blood&#39;</span>), <span class="kw">table</span>(outcome2, trainValGroup, <span class="dt">exclude=</span><span class="ot">NULL</span>))</span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt;                trainValGroup</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; outcome2        Train Val-1 Val-2</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt;   BenignHealthy   522   256   180</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt;   CirrhosisCHB    263   129     0</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt;   HCC             335   809    60</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="kw">with</span>(sampDesc <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sampType<span class="op">==</span><span class="st">&#39;blood&#39;</span>), <span class="kw">table</span>(outcome3, trainValGroup, <span class="dt">exclude=</span><span class="ot">NULL</span>))</span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt;         trainValGroup</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; outcome3 Train Val-1 Val-2</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt;   HCC      335   809    60</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt;   nonHCC   785   385   180</span></span></code></pre></div>
 <h2 id="package-page">Package page</h2>
 <ul>
 <li><a href="https://12379monty.github.io/GSE112679/">https://12379monty.github.io/GSE112679/</a></li>

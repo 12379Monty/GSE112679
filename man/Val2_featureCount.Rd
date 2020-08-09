@@ -3,14 +3,15 @@
 \docType{data}
 \name{Val2_featureCount}
 \alias{Val2_featureCount}
-\title{Val2_featureCount data set documentation}
+\title{Val2_featureCount - a matrix of feature counts for the samples in validation set 2}
 \format{
-An object of class \code{data.frame} with 19100 rows and 240 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 19100 rows and 240 columns.
 }
 \usage{
 Val2_featureCount
 }
 \description{
-Val2_featureCount description goes here
+Val2_featureCount - a matrix of feature counts for the samples in validation set 2
+rows are feature; columns are samples.
 }
 \keyword{datasets}

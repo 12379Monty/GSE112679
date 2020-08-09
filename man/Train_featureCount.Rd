@@ -3,14 +3,15 @@
 \docType{data}
 \name{Train_featureCount}
 \alias{Train_featureCount}
-\title{Train_featureCount data set documentation}
+\title{Train_featureCount - a matrix of feature counts for the samples in the training set}
 \format{
-An object of class \code{data.frame} with 19100 rows and 1120 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 19100 rows and 1120 columns.
 }
 \usage{
 Train_featureCount
 }
 \description{
-Train_featureCount description goes here
+Train_featureCount - a matrix of feature counts for the samples in the training set
+rows are feature; columns are samples.
 }
 \keyword{datasets}

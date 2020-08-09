@@ -3,14 +3,22 @@
 \docType{data}
 \name{genes_annot}
 \alias{genes_annot}
-\title{genes_annot data set documentation}
+\title{genes_annot - a data frame describing the features}
 \format{
-An object of class \code{data.frame} with 19100 rows and 6 columns.
+genes_annot is a data frame with 19100 rows and 6 variables:
+\describe{
+\item{Symbol}{  chr  "OR4F5" "AL627309.1" "OR4F29" "OR4F16" ...}
+\item{Chr}{     chr  "chr01" "chr01" "chr01" "chr01" ...}
+\item{Strand}{  chr  "+" "-" "+" "-" ...}
+\item{Start}{   num  69091 134901 367640 621096 ...}
+\item{Stop}{    num  70008 139379 368634 622034 ...}
+\item{Length}{  num  918 4479 995 939 606 ...}
+}
 }
 \usage{
 genes_annot
 }
 \description{
-genes_annot description goes here
+Data frame with 19100 rows and 6 variables describing features
 }
 \keyword{datasets}

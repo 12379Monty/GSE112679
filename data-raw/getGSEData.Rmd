@@ -204,7 +204,7 @@ getCounts <- function(countFiles, Verbose=F, readSeqFun){
   readSeqFun(FF, Verbose=Verbose)[rownames(featureCount),])
 
   colnames(featureCount) <- names(countFiles)
-  featureCount}
+  as.matrix(featureCount)}
 
 #############################################
 #' Get sequencing data for sampDesc$sampType in sampTypeSel
@@ -419,8 +419,8 @@ object.  Matrices will be assmbled as needed.
  data.frame(Symbol=sapply(strsplit(rownames(TUTI_featureCount), split='~'), function(x) rev(x)[1]),
              Chr=sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 1),
              Strand=sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 2),
-             Start=sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 3),
-             Stop=sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 4),
+             Start=as.numeric(sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 3)),
+             Stop=as.numeric(sapply(strsplit(rownames(TUTI_featureCount), split='~'), '[', 4)),
              Length=sapply(strsplit(rownames(TUTI_featureCount), split='~'),
        function(x) as.numeric(x[4]) - as.numeric(x[3]) +1))
  rownames(genes_annot) <- rownames(TUTI_featureCount)
@@ -502,7 +502,6 @@ object.  Matrices will be assmbled as needed.
 
 
 ```{r save, cache=T, cache.vars=''}
-
  # THIS DOESNT WORK
  #usethis::use_data(get(paste0(GSE_ID, '_sampDesc')), overwrite=T)
 
@@ -516,12 +515,18 @@ THIS.DONT.WORK <- function() {
       file=file.path(data_DIR, paste0(GSE_ID, '.rda')))
  }
 
- save(list='sampDesc', file=file.path(data_DIR, 'sampDesc.rda'))
- save(list='TUTI_featureCount', file=file.path(data_DIR, 'TUTI_featureCount.rda'))
- save(list='Train_featureCount', file=file.path(data_DIR, 'Train_featureCount.rda'))
- save(list='Val1_featureCount', file=file.path(data_DIR, 'Val1_featureCount.rda'))
- save(list='Val2_featureCount', file=file.path(data_DIR, 'Val2_featureCount.rda'))
- save(list='genes_annot', file=file.path(data_DIR, 'genes_annot.rda'))
+ save(list='sampDesc', file=file.path(data_DIR, 'sampDesc.rda'),
+   compress='xz')
+ save(list='TUTI_featureCount', file=file.path(data_DIR, 'TUTI_featureCount.rda'),
+   compress='xz')
+ save(list='Train_featureCount', file=file.path(data_DIR, 'Train_featureCount.rda'),
+   compress='xz')
+ save(list='Val1_featureCount', file=file.path(data_DIR, 'Val1_featureCount.rda'),
+   compress='xz')
+ save(list='Val2_featureCount', file=file.path(data_DIR, 'Val2_featureCount.rda'),
+   compress='xz')
+ save(list='genes_annot', file=file.path(data_DIR, 'genes_annot.rda'),
+   compress='xz')
   
 ```
  
