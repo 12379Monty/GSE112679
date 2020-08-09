@@ -1,4 +1,4 @@
-#' sampDesc - a data frame describing the samples in the GSE112679 dataset
+#' A data frame describing the samples in the GSE112679 dataset
 #'
 #' Data frame with 2606 rows and 16 variables describing samples 
 #'
@@ -23,31 +23,31 @@
 #' }
 "sampDesc"
 
-#' TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples
+#' A matrix of feature counts for the matched Tumor/Tissue samples
 #'
 #' TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples
 #'    rows are feature; columns are samples.
 "TUTI_featureCount"
 
-#' Train_featureCount - a matrix of feature counts for the samples in the training set
+#' A matrix of feature counts for the samples in the training set
 #'
 #' Train_featureCount - a matrix of feature counts for the samples in the training set
 #'    rows are feature; columns are samples.
 "Train_featureCount"
 
-#' Val1_featureCount - a matrix of feature counts for the samples in validation set 1
+#' A matrix of feature counts for the samples in validation set 1
 #'
 #' Val1_featureCount - a matrix of feature counts for the samples in validation set 1
 #'    rows are feature; columns are samples.
 "Val1_featureCount"
 
-#' Val2_featureCount - a matrix of feature counts for the samples in validation set 2
+#' A matrix of feature counts for the samples in validation set 2
 #'
 #' Val2_featureCount - a matrix of feature counts for the samples in validation set 2
 #'    rows are feature; columns are samples.
 "Val2_featureCount"
 
-#' genes_annot - a data frame describing the features
+#' A data frame describing the features
 #'
 #' Data frame with 19100 rows and 6 variables describing features
 #'

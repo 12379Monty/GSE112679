@@ -3,7 +3,7 @@
 \docType{data}
 \name{Train_featureCount}
 \alias{Train_featureCount}
-\title{Train_featureCount - a matrix of feature counts for the samples in the training set}
+\title{A matrix of feature counts for the samples in the training set}
 \format{
 An object of class \code{matrix} (inherits from \code{array}) with 19100 rows and 1120 columns.
 }

@@ -3,7 +3,7 @@
 \docType{data}
 \name{sampDesc}
 \alias{sampDesc}
-\title{sampDesc - a data frame describing the samples in the GSE112679 dataset}
+\title{A data frame describing the samples in the GSE112679 dataset}
 \format{
 sampDesc is a data frame with 2606 rows and 16 variables:
 \describe{

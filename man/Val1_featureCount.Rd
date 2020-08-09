@@ -3,7 +3,7 @@
 \docType{data}
 \name{Val1_featureCount}
 \alias{Val1_featureCount}
-\title{Val1_featureCount - a matrix of feature counts for the samples in validation set 1}
+\title{A matrix of feature counts for the samples in validation set 1}
 \format{
 An object of class \code{matrix} (inherits from \code{array}) with 19100 rows and 1194 columns.
 }

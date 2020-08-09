@@ -3,7 +3,7 @@
 \docType{data}
 \name{genes_annot}
 \alias{genes_annot}
-\title{genes_annot - a data frame describing the features}
+\title{A data frame describing the features}
 \format{
 genes_annot is a data frame with 19100 rows and 6 variables:
 \describe{
