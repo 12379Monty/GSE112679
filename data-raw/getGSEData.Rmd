@@ -21,7 +21,7 @@ vignette: >
  %\VignetteEngine{knitr::rmarkdown}
 ---
 
-<-- TO DO - Styling
+<!-- TO DO - Styling
 
 formatR::tidy_dir("R")
 # or
