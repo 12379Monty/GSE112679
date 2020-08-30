@@ -1,25 +1,3 @@
----
-title: "Read Data for NCBI GEO Series GSE112679"
-author: "Francois.collin@gmail.com"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output:
-  html_document:
-    code_folding: show
-    toc: true
-    # does this have an effect
-    fig_caption: yes
-    # this has no effect
-    number_sections: yes
-    css: ../docs/_pandocFiles/github-markdown.css
-    #css: ../docs/_pandocFiles/pandoc3.css
-bibliography: ../docs/_bibFiles/bibFile.bib
-csl: ../docs/_bibFiles/cell-numeric.csl
-#biblio-style: acm
-link-citations: true
-vignette: >
- %\VignetteEncoding{UTF-8}
- %\VignetteEngine{knitr::rmarkdown}
----
 
 <!-- TO DO - Styling
 
@@ -33,70 +11,11 @@ save to preTidy first to compare
 
 
 
-```{r GlobalOptions, results="hide", include=FALSE, cache=FALSE}
-knitr::opts_knit$set(stop_on_error = 2L) #really make it stop
-#knitr::dep_auto()
-```
+
 <!-- ######################################################################## -->
 
 
-```{r Prelims, include=FALSE, echo=FALSE, results='hide', message=FALSE,cache=F}
 
- FN <- "getGSEData"
-if(sum(grepl(FN, list.files()))==0) stop("Check FN")
-
- PREFIX <- ""
-
- suppressPackageStartupMessages(require(methods))
- suppressPackageStartupMessages(require(rmarkdown))
- suppressPackageStartupMessages(require(bookdown))
-
- suppressPackageStartupMessages(require(knitr))
- options(stringsAsFactors=F)
-
- suppressPackageStartupMessages(require(data.table)) 
- options(datatable.fread.datatable=F)
-
- suppressPackageStartupMessages(require(plyr))
- suppressPackageStartupMessages(require(dplyr))
- suppressPackageStartupMessages(require(magrittr))
-
- # Shotcuts for knitting and redering while in R session (Invoke interactive R from R/Scripts folder)
- kk <- function(n='') knitr::knit2html(paste("t", n, sep=''), envir=globalenv(),
-       output=paste(FN,".html", sep=''))
-
- rr <- function(n='') rmarkdown::render(paste("t", n, sep=''), envir=globalenv(),
-       output_file=paste(FN,".html", sep='')) ##, output_dir='Scripts')
-
- bb <- function(n='') browseURL(paste(FN,".html", sep=''))
-
- # The usual shotcuts
- zz <- function(n='') source(paste("t", n, sep=''))
-
- # Using relative paths:
- # Assuming script is run from GSE112679/data-raw/
- WRKDIR <- ('..')
-
- # Not needed if path is relative ...
- if(!file.exists(WRKDIR)) stop("WRKDIR ERROR: ", WRKDIR)
-
- # do once
- #setwd(WRKDIR)
-
- # file rmarkdown file management options: cache, figures
- cache_DIR <- file.path('cache/rdGEData/')
- suppressPackageStartupMessages(dir.create(cache_DIR, recursive=T))
- opts_chunk$set(cache.path=cache_DIR)
-
- figure_DIR <- file.path('figures/rdGEData/')
- suppressPackageStartupMessages(dir.create(figure_DIR, recursive=T))
- opts_chunk$set(fig.path=paste0(figure_DIR, PREFIX))
-
- data_DIR <- '../data'
- if(!file.exists(data_DIR)) stop("data_DIR ERROR: ", data_DIR)
-
-
-```
 <!-- ######################################################################## -->
 
 
@@ -115,8 +34,8 @@ Cai et al. (2019) [@Cai:2019aa]).
 
 # Set Analysis Parameters
  
-```{r setAnalysisParameters, echo=T, cache=F}
 
+```r
  GSE_ID <- 'GSE112679'
 
  # extData
@@ -134,12 +53,12 @@ Cai et al. (2019) [@Cai:2019aa]).
  if(file.exists(file.path(GSE_DATA_DIR, paste0(GSE_ID,'_series_matrix.txt'))))
  SAMPLE_DESC_FILE <- file.path(GSE_DATA_DIR, paste0(GSE_ID,'_series_matrix.txt')) else 
  stop("Speficy SAMPLE_DESC_FILE")
- 
 ```
 
 Define some utility functions.  
 
-```{r utilFunctions, cache=F}
+
+```r
  # The sequencing files have two formats
  ## _[TU,TI]_ files have columns Geneid, Chr, Start, End, Strand, Length, Count
  ## _seq_ fales have columns Geneid, count
@@ -237,18 +156,66 @@ getData <- function(selVar, selVal, readSeqFun) {
  names(selected_countFiles_loc) <- names(selected_countFiles) 
  selected_featureCount <- getCounts(selected_countFiles_loc, Verbose=F, readSeqFun)
  selected_featureCount}
-
 ```
 
 ## Get Sample Description Data
 
-```{r readSampDesc,cache=T, cach.vars='sampDesc', eval=T, echo=T, fig.height=6, fig.width=11}
 
+```r
  suppressPackageStartupMessages(require(GEOquery))
 
  GSEMatrix_obj <- getGEO(GSE_ID, GSEMatrix=T)
- show(GSEMatrix_obj)
+```
 
+```
+## Found 1 file(s)
+```
+
+```
+## GSE112679_series_matrix.txt.gz
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   .default = col_character()
+## )
+```
+
+```
+## See spec(...) for full column specifications.
+```
+
+```
+## File stored at:
+```
+
+```
+## /var/folders/wd/v5lfllh152x0hwhtr773cnmnjqcpdt/T//RtmpAxWuzD/GPL18573.soft
+```
+
+```r
+ show(GSEMatrix_obj)
+```
+
+```
+## $GSE112679_series_matrix.txt.gz
+## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 0 features, 2606 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: GSM3076193 GSM3076194 ... GSM3905974 (2606 total)
+##   varLabels: title geo_accession ... training/validation group:ch1 (46
+##     total)
+##   varMetadata: labelDescription
+## featureData: none
+## experimentData: use 'experimentData(object)'
+##   pubMedIds: 31358576 
+## Annotation: GPL18573
+```
+
+```r
  #DT::datatable(pData(phenoData(GSEMatrix_obj[[1]])))
 
  KEY_FIELDS <- grep(':ch1$', names(pData(phenoData(GSEMatrix_obj[[1]]))), value=T)
@@ -298,23 +265,117 @@ getData <- function(selVar, selVal, readSeqFun) {
  stop("geoAcc/fileName Mismatch")
 
  str(sampDesc)
- 
+```
+
+```
+## 'data.frame':	2606 obs. of  12 variables:
+##  $ geoAcc       : chr  "GSM3076193" "GSM3076194" "GSM3076195" "GSM3076196" ...
+##  $ title        : chr  "blood_1" "blood_2" "blood_3" "blood_4" ...
+##  $ sampType     : chr  "blood" "blood" "blood" "blood" ...
+##  $ sampNo       : chr  "1" "2" "3" "4" ...
+##  $ bioSample    : chr  "SAMN08869478" "SAMN08869477" "SAMN08869476" "SAMN08869475" ...
+##  $ SRA          : chr  "SRX3890002" "SRX3890003" "SRX3890004" "SRX3890005" ...
+##  $ fileName     : chr  "GSM3076193_Seq_1.genebody.txt.gz" "GSM3076194_Seq_2.genebody.txt.gz" "GSM3076195_Seq_3.genebody.txt.gz" "GSM3076196_Seq_4.genebody.txt.gz" ...
+##  $ stage        : chr  NA NA NA NA ...
+##  $ Dx           : chr  "CHB" "Liver cirrhosis" "Liver cirrhosis" "Healthy" ...
+##  $ tissueSubtype: chr  NA NA NA NA ...
+##  $ tissue       : chr  "plasma" "plasma" "plasma" "plasma" ...
+##  $ trainValGroup: chr  "Training" "Training" "Training" "Training" ...
+```
+
+```r
  cat("geoAcc is unique - use as rownames:\n")
+```
+
+```
+## geoAcc is unique - use as rownames:
+```
+
+```r
  with(sampDesc, table(table(geoAcc, exclude=NULL)))
+```
+
+```
+## 
+##    1 
+## 2606
+```
+
+```r
  rownames(sampDesc) <- sampDesc$geoAcc
  
  cat("SRA is unique:\n")
+```
+
+```
+## SRA is unique:
+```
+
+```r
  with(sampDesc, table(table(SRA, exclude=NULL)))
- 
+```
+
+```
+## 
+##    1 
+## 2606
+```
+
+```r
  cat("bioSample is unique:\n")
+```
+
+```
+## bioSample is unique:
+```
+
+```r
  with(sampDesc, table(table(bioSample, exclude=NULL)))
- 
+```
+
+```
+## 
+##    1 
+## 2606
+```
+
+```r
  cat("title is unique:\n")
+```
+
+```
+## title is unique:
+```
+
+```r
  with(sampDesc, table(table(title, exclude=NULL)))
+```
 
+```
+## 
+##    1 
+## 2606
+```
+
+```r
  cat("Some Samples Match bu sampNo:")
- with(sampDesc, table(table(sampNo, exclude=NULL)))
+```
 
+```
+## Some Samples Match bu sampNo:
+```
+
+```r
+ with(sampDesc, table(table(sampNo, exclude=NULL)))
+```
+
+```
+## 
+##    1    2    3 
+## 2531    3   23
+```
+
+```r
  # NOTE: examination of the data indicate that sampNo cannot be used
  # to match Blood with TU or TI samples
 
@@ -348,34 +409,93 @@ DEPRICATED <- function() {
  table(Dx_tissue=paste0(Dx,'_',tissue), trainValGroup, exclude=NULL))
 
  trainValGroupDX.tbl
+```
 
+```
+##                   trainValGroup
+## Dx_tissue          Train Val-1 Val-2 <NA>
+##   Benign_plasma      253   132     3    0
+##   CHB_plasma         190    96     0    0
+##   Cirrhosis_plasma    73    33     0    0
+##   HCC_liver            0     0     0   52
+##   HCC_plasma         335   809    60    0
+##   Healthy_plasma     269   124   177    0
+```
+
+```r
  # For consistency with previous code, we will use Outcome as an alias to Dx,
  # and sampID as an alias to geoAcc
  sampDesc$outcome <- sampDesc$Dx
  sampDesc$sampID <- sampDesc$geoAcc
 
  cat("Cai et al. combine Beign+Healthy and Cirrhosis+HCC\n")
+```
+
+```
+## Cai et al. combine Beign+Healthy and Cirrhosis+HCC
+```
+
+```r
  cat("Create secondary outcome\n")
+```
+
+```
+## Create secondary outcome
+```
+
+```r
  sampDesc$outcome2 <- with(sampDesc, 
  ifelse(Dx %in% c("Benign", "Healthy"), 'BenignHealthy',
  ifelse(Dx %in% c("Cirrhosis", "CHB"), 'CirrhosisCHB', Dx)))
 
  with(sampDesc, table(trainValGroup, outcome2, exclude=NULL))
- 
+```
+
+```
+##              outcome2
+## trainValGroup BenignHealthy CirrhosisCHB HCC
+##         Train           522          263 335
+##         Val-1           256          129 809
+##         Val-2           180            0  60
+##         <NA>              0            0  52
+```
+
+```r
  cat("Also want outcome3 == HCC or nonHCC\n")
+```
+
+```
+## Also want outcome3 == HCC or nonHCC
+```
+
+```r
  sampDesc$outcome3 <- with(sampDesc,
  ifelse(Dx == 'HCC', 'HCC', 'nonHCC'))
 
  with(sampDesc, table(trainValGroup, outcome3, exclude=NULL))
-
-
 ```
 
-```{r DTsampDesc}
+```
+##              outcome3
+## trainValGroup HCC nonHCC
+##         Train 335    785
+##         Val-1 809    385
+##         Val-2  60    180
+##         <NA>   52      0
+```
 
+
+```r
  DT::datatable(sampDesc,  options=list(pageLength = 18))
+```
 
 ```
+## Warning in instance$preRenderHook(instance): It seems your data is too big
+## for client-side DataTables. You may consider server-side processing: https://
+## rstudio.github.io/DT/server.html
+```
+
+![plot of chunk DTsampDesc](figures/rdGEData/DTsampDesc-1.png)
 
 
 ## Get Count Data
@@ -402,18 +522,57 @@ object.  Matrices will be assmbled as needed.
 
 ### Read sequencing data for `TUTI` set, the matched tummor, tissue samples.
 
-```{r  readTUTI, eval=T, cache=T, cache.vars=c('TUTI_featureCount', 'genes_annot'),message=F}
+
+```r
  ####,results='asis'}
  suppressPackageStartupMessages(require(edgeR))
 
  GSE_genebodyCountFiles <- list.files(GSE_DATA_DIR, 'genebody')
 
  TUTI_featureCount <- getData(selVar='sampType', selVal=c('TU', 'TI'), readSeqFun=readSeqWfmt)
+```
 
+```
+## 
+## Found 52 count files
+```
+
+```r
  cat("dim(TUTI_featureCount):\n")
- print(dim(TUTI_featureCount))
- print(TUTI_featureCount[1:5, 1:5])
+```
 
+```
+## dim(TUTI_featureCount):
+```
+
+```r
+ print(dim(TUTI_featureCount))
+```
+
+```
+## [1] 19100    52
+```
+
+```r
+ print(TUTI_featureCount[1:5, 1:5])
+```
+
+```
+##                                  GSM3905949 GSM3905923 GSM3905950 GSM3905924
+## chr01~+~69091~70008~OR4F5                 0          1          0          0
+## chr01~-~134901~139379~AL627309.1         23         50          7         11
+## chr01~+~367640~368634~OR4F29              0          0          0          0
+## chr01~-~621096~622034~OR4F16              0          0          0          0
+## chr01~-~738532~739137~AL669831.1          7          3          5          3
+##                                  GSM3905951
+## chr01~+~69091~70008~OR4F5                 0
+## chr01~-~134901~139379~AL627309.1         17
+## chr01~+~367640~368634~OR4F29              0
+## chr01~-~621096~622034~OR4F16              0
+## chr01~-~738532~739137~AL669831.1          6
+```
+
+```r
  # Extract genes_annot from rownames of TUTI_countFiles
  genes_annot <-
  data.frame(Symbol=sapply(strsplit(rownames(TUTI_featureCount), split='~'), function(x) rev(x)[1]),
@@ -425,150 +584,8 @@ object.  Matrices will be assmbled as needed.
        function(x) as.numeric(x[4]) - as.numeric(x[3]) +1))
  rownames(genes_annot) <- rownames(TUTI_featureCount)
  
+ # Add 
 ```
 
-### Add GC content to genes_annot
-
-```{r addGC, eval=T, cache=T, cache.vars=c('genes_annot'),message=F}
- library(BSgenome.Hsapiens.UCSC.hg19)
- library(TxDb.Hsapiens.UCSC.hg19.knownGene)
-
- genes_gr <- GRanges(
- seqnames=sub('chr0','chr',genes_annot$Chr),
- IRanges(start=genes_annot$Start, end=genes_annot$Stop),
- strand=genes_annot$Strand)
-
- genes_seq <- Biostrings::getSeq(BSgenome.Hsapiens.UCSC.hg19, genes_gr)
- genes_alf <- Biostrings::alphabetFrequency(genes_seq, collapse=F)[, c("A", "C", "G", "T")]
-
- genes_annot <- data.frame(genes_annot, genes_alf)
-
-```
-
-
-
-<br/>
-
-### Read sequencing data for samples in `Train` set
-
-```{r  readTrain, eval=T, cache=T, cache.vars='Train_featureCount',message=F}
- ####,results='asis'}
- suppressPackageStartupMessages(require(edgeR))
-
- GSE_genebodyCountFiles <- list.files(GSE_DATA_DIR, 'genebody')
-
- Train_featureCount <- getData(selVar='trainValGroup', selVal='Train', readSeqFun=readSeqNfmt)
-
- cat("dim(Train_featureCount):\n")
- print(dim(Train_featureCount))
- print(Train_featureCount[1:5, 1:5])
-
- # Verify rows match genes_annot
- genes_ndx <- match(rownames(Train_featureCount), genes_annot$Symbol)
- if(sum(is.na(genes_ndx))) stop("Mismatched Genes")
- if(sum(duplicated(genes_ndx))) stop("Duplicated Genes")
-
-```
-
- 
-<br/>
-
-### Read sequencing data for samples in `Val-1` set
-
-
-```{r  readVal-1, eval=T, cache=T, cache.vars='Val1_featureCount',message=F}
- ####,results='asis'}
- suppressPackageStartupMessages(require(edgeR))
-
- GSE_genebodyCountFiles <- list.files(GSE_DATA_DIR, 'genebody')
-
- Val1_featureCount <- getData(selVar='trainValGroup', selVal='Val-1', readSeqFun=readSeqNfmt)
-
- cat("dim(Val1_featureCount):\n")
- print(dim(Val1_featureCount))
- print(Val1_featureCount[1:5, 1:5])
-
- # Verify rows match genes_annot
- genes_ndx <- match(rownames(Val1_featureCount), genes_annot$Symbol)
- if(sum(is.na(genes_ndx))) stop("Mismatched Genes")
- if(sum(duplicated(genes_ndx))) stop("Duplicated Genes")
-
-```
-
-
-### Read sequencing data for samples in `Val-2` set
-
-
-```{r  readVal-2, eval=T, cache=T, cache.vars='Val2_featureCount',message=F}
- ####,results='asis'}
- suppressPackageStartupMessages(require(edgeR))
-
- GSE_genebodyCountFiles <- list.files(GSE_DATA_DIR, 'genebody')
-
- Val2_featureCount <- getData(selVar='trainValGroup', selVal='Val-2', readSeqFun=readSeqNfmt)
-
- cat("dim(Val2_featureCount):\n")
- print(dim(Val2_featureCount))
- print(Val2_featureCount[1:5, 1:5])
-
- # Verify rows match genes_annot
- genes_ndx <- match(rownames(Val2_featureCount), genes_annot$Symbol)
- if(sum(is.na(genes_ndx))) stop("Mismatched Genes")
- if(sum(duplicated(genes_ndx))) stop("Duplicated Genes")
-
-```
-
-## Save all to `r GSE_ID`
-
-
-```{r save, cache=T, cache.vars=''}
- # THIS DOESNT WORK
- #usethis::use_data(get(paste0(GSE_ID, '_sampDesc')), overwrite=T)
-
- # DO WE HAVE TO DO THIS?
- #usethis::use_data(GSE112679_sampDesc, overwrite=T)
-
-THIS.DONT.WORK <- function() {
- # put all data - sampDesc & counts - into one object!
- save(list=c('sampDesc', 'TUTI_featureCount', 'Train_featureCount',
-             'Val1_featureCount', 'Val2_featureCount', 'genes_annot'),
-      file=file.path(data_DIR, paste0(GSE_ID, '.rda')))
- }
-
- save(list='sampDesc', file=file.path(data_DIR, 'sampDesc.rda'),
-   compress='xz')
- save(list='TUTI_featureCount', file=file.path(data_DIR, 'TUTI_featureCount.rda'),
-   compress='xz')
- save(list='Train_featureCount', file=file.path(data_DIR, 'Train_featureCount.rda'),
-   compress='xz')
- save(list='Val1_featureCount', file=file.path(data_DIR, 'Val1_featureCount.rda'),
-   compress='xz')
- save(list='Val2_featureCount', file=file.path(data_DIR, 'Val2_featureCount.rda'),
-   compress='xz')
- save(list='genes_annot', file=file.path(data_DIR, 'genes_annot.rda'),
-   compress='xz')
-  
-```
- 
-
-```{r, echo=FALSE}
- sessionInfo()
-```
-
-
-```{r, echo=FALSE}
-  knit_exit()
-```
-
-### ARCHIVAL CODE BELOW
-<!-- ######################################################################## -->
-
-
-<!-- To run
-# nohup Rscript -e "knitr::knit2html('getGSEData.Rmd')" > getGSEData.log  &
-
-# Or
-# nohup Rscript -e "rmarkdown::render('getGSEData.Rmd')" > getGSEData.log  &
-
--->
+### Add GC contenet to genes_annot
 
