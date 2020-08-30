@@ -551,6 +551,11 @@ THIS.DONT.WORK <- function() {
 ```
  
 
+# References
+<div id="refs"></div>
+
+
+
 ```{r, echo=FALSE}
  sessionInfo()
 ```
