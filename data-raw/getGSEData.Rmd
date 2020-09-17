@@ -108,7 +108,7 @@ This script assembles R object from data downloaded from
 [NCBI/Gene Expression Omnibus Database (GSE112679)](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112679).
 The R objects will be assembled into an R data package for
 easy access.  The objects are constructed to parallel the
-analyses of these data are reported in
+analyses of these data as reported in
 Cai et al. (2019) [@Cai:2019aa]).  
 
 

@@ -53,11 +53,6 @@ List of 6
  $ fig.height: num 6
  $ fig.width : num 11
 
-trying URL 'https://ftp.ncbi.nlm.nih.gov/geo/series/GSE112nnn/GSE112679/matrix/GSE112679_series_matrix.txt.gz'
-Content type 'application/x-gzip' length 91700 bytes (89 KB)
-==================================================
-downloaded 89 KB
-
   |                                                                              |...........................                                           |  38%
   ordinary text without R code
 
@@ -84,72 +79,6 @@ List of 4
  $ cache     : symbol T
  $ cache.vars: language c("genes_annot")
  $ message   : symbol F
-
-Loading required package: BSgenome
-Loading required package: S4Vectors
-Loading required package: stats4
-
-Attaching package: 'S4Vectors'
-
-The following objects are masked from 'package:dplyr':
-
-    first, rename
-
-The following object is masked from 'package:plyr':
-
-    rename
-
-The following objects are masked from 'package:data.table':
-
-    first, second
-
-The following object is masked from 'package:base':
-
-    expand.grid
-
-Loading required package: IRanges
-
-Attaching package: 'IRanges'
-
-The following objects are masked from 'package:dplyr':
-
-    collapse, desc, slice
-
-The following object is masked from 'package:plyr':
-
-    desc
-
-The following object is masked from 'package:data.table':
-
-    shift
-
-Loading required package: GenomeInfoDb
-Loading required package: GenomicRanges
-Loading required package: Biostrings
-Loading required package: XVector
-
-Attaching package: 'XVector'
-
-The following object is masked from 'package:plyr':
-
-    compact
-
-
-Attaching package: 'Biostrings'
-
-The following object is masked from 'package:base':
-
-    strsplit
-
-Loading required package: rtracklayer
-Loading required package: GenomicFeatures
-Loading required package: AnnotationDbi
-
-Attaching package: 'AnnotationDbi'
-
-The following object is masked from 'package:dplyr':
-
-    select
 
   |                                                                              |.........................................                             |  59%
   ordinary text without R code
@@ -212,6 +141,6 @@ List of 1
 
 output file: getGSEData.knit.md
 
-/usr/local/bin/pandoc +RTS -K512m -RTS getGSEData.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output getGSEData.html --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --template /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --number-sections --css ../docs/_pandocFiles/github-markdown.css --variable 'theme:bootstrap' --include-in-header /var/folders/wd/v5lfllh152x0hwhtr773cnmnjqcpdt/T//RtmpMCqUD3/rmarkdown-str20835c2417d9.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=show --variable code_menu=1 --filter /usr/local/bin/pandoc-citeproc 
+/usr/local/bin/pandoc +RTS -K512m -RTS getGSEData.utf8.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output getGSEData.html --email-obfuscation none --self-contained --standalone --section-divs --table-of-contents --toc-depth 3 --template /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --number-sections --css ../docs/_pandocFiles/github-markdown.css --variable 'theme:bootstrap' --include-in-header /var/folders/wd/v5lfllh152x0hwhtr773cnmnjqcpdt/T//RtmpZJulx0/rmarkdown-str147d2f5e6717.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/pagebreak.lua --lua-filter /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rmarkdown/rmd/lua/latex-div.lua --variable code_folding=show --variable code_menu=1 --filter /usr/local/bin/pandoc-citeproc 
 
 Output created: getGSEData.html
