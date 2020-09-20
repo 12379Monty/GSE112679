@@ -535,19 +535,42 @@ THIS.DONT.WORK <- function() {
       file=file.path(data_DIR, paste0(GSE_ID, '.rda')))
  }
 
- save(list='sampDesc', file=file.path(data_DIR, 'sampDesc.rda'),
-   compress='xz')
- save(list='TUTI_featureCount', file=file.path(data_DIR, 'TUTI_featureCount.rda'),
-   compress='xz')
- save(list='Train_featureCount', file=file.path(data_DIR, 'Train_featureCount.rda'),
-   compress='xz')
- save(list='Val1_featureCount', file=file.path(data_DIR, 'Val1_featureCount.rda'),
-   compress='xz')
- save(list='Val2_featureCount', file=file.path(data_DIR, 'Val2_featureCount.rda'),
-   compress='xz')
- save(list='genes_annot', file=file.path(data_DIR, 'genes_annot.rda'),
-   compress='xz')
-  
+
+# save sampDesc
+assign(paste0(GSE_ID,'_sampDesc'), sampDesc)
+save(list=paste0(GSE_ID,'_sampDesc'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_sampDesc.rda')),
+  compress='xz')
+
+
+# save counts
+assign(paste0(GSE_ID,'_TUTI_featureCount'), TUTI_featureCount)
+save(list=paste0(GSE_ID,'_TUTI_featureCount'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_TUTI_featureCount.rda')),
+  compress='xz')
+
+assign(paste0(GSE_ID,'_Train_featureCount'), Train_featureCount)
+save(list=paste0(GSE_ID,'_Train_featureCount'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_Train_featureCount.rda')),
+  compress='xz')
+
+assign(paste0(GSE_ID,'_Val1_featureCount'), Val1_featureCount)
+save(list=paste0(GSE_ID,'_Val1_featureCount'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_Val1_featureCount.rda')),
+  compress='xz')
+
+assign(paste0(GSE_ID,'_Val2_featureCount'), Val2_featureCount)
+save(list=paste0(GSE_ID,'_Val2_featureCount'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_Val2_featureCount.rda')),
+  compress='xz')
+
+# save genes_annot
+assign(paste0(GSE_ID,'_genes_annot'), genes_annot)
+save(list=paste0(GSE_ID,'_genes_annot'),
+     file=file.path(data_DIR, paste0(GSE_ID,'_genes_annot.rda')),
+  compress='xz')
+
+
 ```
  
 

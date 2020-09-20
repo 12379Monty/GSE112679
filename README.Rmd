@@ -57,6 +57,17 @@ devtools::install_github("12379Monty/GSE112679")
 ```{r example}
 library(magrittr)
 library(GSE112679)
+
+# Rename all for convience
+TUTI_featureCount <- GSE112679_TUTI_featureCount
+Train_featureCount <- GSE112679_Train_featureCount
+Val1_featureCount <- GSE112679_Val1_featureCount
+Val2_featureCount <- GSE112679_Val2_featureCount
+genes_annot  <- GSE112679_genes_annot 
+sampDesc  <- GSE112679_sampDesc 
+
+detach(package:GSE112679, unload = T )
+
 ```
 
 <br/>

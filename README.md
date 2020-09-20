@@ -23,14 +23,14 @@ reported in Cai et al. (2019)
   knitr::kable(tmp$results[, c("Item", "Title")])
 ```
 
-| Item                | Title                                                           |
-| :------------------ | :-------------------------------------------------------------- |
-| TUTI\_featureCount  | A matrix of feature counts for the matched Tumor/Tissue samples |
-| Train\_featureCount | A matrix of feature counts for the samples in the training set  |
-| Val1\_featureCount  | A matrix of feature counts for the samples in validation set 1  |
-| Val2\_featureCount  | A matrix of feature counts for the samples in validation set 2  |
-| genes\_annot        | A data frame describing the features                            |
-| sampDesc            | A data frame describing the samples in the GSE112679 dataset    |
+| Item                           | Title                                                           |
+| :----------------------------- | :-------------------------------------------------------------- |
+| GSE112679\_TUTI\_featureCount  | A matrix of feature counts for the matched Tumor/Tissue samples |
+| GSE112679\_Train\_featureCount | A matrix of feature counts for the samples in the training set  |
+| GSE112679\_Val1\_featureCount  | A matrix of feature counts for the samples in validation set 1  |
+| GSE112679\_Val2\_featureCount  | A matrix of feature counts for the samples in validation set 2  |
+| GSE112679\_genes\_annot        | A data frame describing the features                            |
+| GSE112679\_sampDesc            | A data frame describing the samples in the GSE112679 dataset    |
 
 ## Installation
 
@@ -44,10 +44,24 @@ devtools::install_github("12379Monty/GSE112679")
 ``` r
 library(magrittr)
 library(GSE112679)
+
+# Rename all for convience
+TUTI_featureCount <- GSE112679_TUTI_featureCount
+Train_featureCount <- GSE112679_Train_featureCount
+Val1_featureCount <- GSE112679_Val1_featureCount
+Val2_featureCount <- GSE112679_Val2_featureCount
+genes_annot  <- GSE112679_genes_annot 
+sampDesc  <- GSE112679_sampDesc 
+
+detach(package:GSE112679, unload = T )
 ```
 
-sampType is used to distinguish blood from tissue samples. The latter
-can be tumor or tumor adjacent (sampType==TI).
+<br/>
+
+  - sampType is used to distinguish blood from tissue samples. The
+    latter can be tumor or tumor adjacent (sampType==TI).
+
+<!-- end list -->
 
 ``` r
 with(sampDesc, table(sampType, trainValGroup, exclude=NULL))
@@ -57,6 +71,8 @@ with(sampDesc, table(sampType, trainValGroup, exclude=NULL))
 #>    TI        0     0     0   26
 #>    TU        0     0     0   26
 ```
+
+<br/>
 
   - For blood samples, outcome is specific Dx which can be used to
     investigate 5hmc profile differences between healthy, benign and
@@ -76,6 +92,8 @@ with(sampDesc %>% dplyr::filter(sampType=='blood'),
 #>   Healthy     269   124   177
 ```
 
+<br/>
+
   - outcome2 pools Benign+Healthy and Cirrhosis+CHB.
 
 <!-- end list -->
@@ -90,6 +108,8 @@ with(sampDesc %>% dplyr::filter(sampType=='blood'),
 #>   HCC             335   809    60
 ```
 
+<br/>
+
   - outcome3 is HCC vs the rest.
 
 <!-- end list -->
@@ -102,6 +122,8 @@ with(sampDesc %>% dplyr::filter(sampType=='blood'),
 #>   HCC      335   809    60
 #>   nonHCC   785   385   180
 ```
+
+<br/>
 
   - sampDesc is used to provide sample information for the feature count
     data.

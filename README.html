@@ -621,27 +621,27 @@ body {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">TUTI_featureCount</td>
+<td align="left">GSE112679_TUTI_featureCount</td>
 <td align="left">A matrix of feature counts for the matched Tumor/Tissue samples</td>
 </tr>
 <tr class="even">
-<td align="left">Train_featureCount</td>
+<td align="left">GSE112679_Train_featureCount</td>
 <td align="left">A matrix of feature counts for the samples in the training set</td>
 </tr>
 <tr class="odd">
-<td align="left">Val1_featureCount</td>
+<td align="left">GSE112679_Val1_featureCount</td>
 <td align="left">A matrix of feature counts for the samples in validation set 1</td>
 </tr>
 <tr class="even">
-<td align="left">Val2_featureCount</td>
+<td align="left">GSE112679_Val2_featureCount</td>
 <td align="left">A matrix of feature counts for the samples in validation set 2</td>
 </tr>
 <tr class="odd">
-<td align="left">genes_annot</td>
+<td align="left">GSE112679_genes_annot</td>
 <td align="left">A data frame describing the features</td>
 </tr>
 <tr class="even">
-<td align="left">sampDesc</td>
+<td align="left">GSE112679_sampDesc</td>
 <td align="left">A data frame describing the samples in the GSE112679 dataset</td>
 </tr>
 </tbody>
@@ -651,14 +651,32 @@ body {
 <span id="cb2-2"><a href="#cb2-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;12379Monty/GSE112679&quot;</span>)</span></code></pre></div>
 <h2 id="example">Example</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(GSE112679)</span></code></pre></div>
-<p>sampType is used to distinguish blood from tissue samples. The latter can be tumor or tumor adjacent (sampType==TI).</p>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(GSE112679)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Rename all for convience</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>TUTI_featureCount &lt;-<span class="st"> </span>GSE112679_TUTI_featureCount</span>
+<span id="cb3-6"><a href="#cb3-6"></a>Train_featureCount &lt;-<span class="st"> </span>GSE112679_Train_featureCount</span>
+<span id="cb3-7"><a href="#cb3-7"></a>Val1_featureCount &lt;-<span class="st"> </span>GSE112679_Val1_featureCount</span>
+<span id="cb3-8"><a href="#cb3-8"></a>Val2_featureCount &lt;-<span class="st"> </span>GSE112679_Val2_featureCount</span>
+<span id="cb3-9"><a href="#cb3-9"></a>genes_annot  &lt;-<span class="st"> </span>GSE112679_genes_annot </span>
+<span id="cb3-10"><a href="#cb3-10"></a>sampDesc  &lt;-<span class="st"> </span>GSE112679_sampDesc </span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="kw">detach</span>(package<span class="op">:</span>GSE112679, <span class="dt">unload =</span> T )</span></code></pre></div>
+<br />
+
+<ul>
+<li>sampType is used to distinguish blood from tissue samples. The latter can be tumor or tumor adjacent (sampType==TI).</li>
+</ul>
+<!-- end list -->
+
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">with</span>(sampDesc, <span class="kw">table</span>(sampType, trainValGroup, <span class="dt">exclude=</span><span class="ot">NULL</span>))</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;         trainValGroup</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; sampType Train Val-1 Val-2 &lt;NA&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;    blood  1120  1194   240    0</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;    TI        0     0     0   26</span></span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;    TU        0     0     0   26</span></span></code></pre></div>
+<br />
+
 <ul>
 <li>For blood samples, outcome is specific Dx which can be used to investigate 5hmc profile differences between healthy, benign and malignant samples.</li>
 </ul>
@@ -673,6 +691,8 @@ body {
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;   Cirrhosis    73    33     0</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;   HCC         335   809    60</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;   Healthy     269   124   177</span></span></code></pre></div>
+<br />
+
 <ul>
 <li>outcome2 pools Benign+Healthy and Cirrhosis+CHB.</li>
 </ul>
@@ -685,6 +705,8 @@ body {
 <span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;   BenignHealthy   522   256   180</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;   CirrhosisCHB    263   129     0</span></span>
 <span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;   HCC             335   809    60</span></span></code></pre></div>
+<br />
+
 <ul>
 <li>outcome3 is HCC vs the rest.</li>
 </ul>
@@ -696,6 +718,8 @@ body {
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; outcome3 Train Val-1 Val-2</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt;   HCC      335   809    60</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;   nonHCC   785   385   180</span></span></code></pre></div>
+<br />
+
 <ul>
 <li>sampDesc is used to provide sample information for the feature count data.</li>
 </ul>

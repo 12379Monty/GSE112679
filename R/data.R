@@ -2,7 +2,7 @@
 #'
 #' Data frame with 2606 rows and 16 variables describing samples 
 #'
-#' @format sampDesc is a data frame with 2606 rows and 16 variables:
+#' @format GSE112679_sampDesc is a data frame with 2606 rows and 16 variables:
 #' \describe{
 #'   \item{geoAcc}{      : chr  "GSM3076193" "GSM3905949" "GSM3905923" ...}
 #'   \item{title}{       : chr  "blood_1" "TI_1" "TU_1" "blood_2" ...}
@@ -21,31 +21,31 @@
 #'   \item{outcome2}{     : chr  "CirrhosisCHB" "HCC" "HCC" "CirrhosisCHB" ...}
 #'   \item{outcome3}{     : chr  "nonHCC" "HCC" "HCC" "nonHCC" ...}
 #' }
-"sampDesc"
+"GSE112679_sampDesc"
 
 #' A matrix of feature counts for the matched Tumor/Tissue samples
 #'
-#' TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples
+#' GSE112679_TUTI_featureCount - a matrix of feature counts for the matched Tumor/Tissue samples
 #'    rows are feature; columns are samples.
-"TUTI_featureCount"
+"GSE112679_TUTI_featureCount"
 
 #' A matrix of feature counts for the samples in the training set
 #'
-#' Train_featureCount - a matrix of feature counts for the samples in the training set
+#' GSE112679_Train_featureCount - a matrix of feature counts for the samples in the training set
 #'    rows are feature; columns are samples.
-"Train_featureCount"
+"GSE112679_Train_featureCount"
 
 #' A matrix of feature counts for the samples in validation set 1
 #'
-#' Val1_featureCount - a matrix of feature counts for the samples in validation set 1
+#' GSE112679_Val1_featureCount - a matrix of feature counts for the samples in validation set 1
 #'    rows are feature; columns are samples.
-"Val1_featureCount"
+"GSE112679_Val1_featureCount"
 
 #' A matrix of feature counts for the samples in validation set 2
 #'
-#' Val2_featureCount - a matrix of feature counts for the samples in validation set 2
+#' GSE112679_Val2_featureCount - a matrix of feature counts for the samples in validation set 2
 #'    rows are feature; columns are samples.
-"Val2_featureCount"
+"GSE112679_Val2_featureCount"
 
 #' A data frame describing the features
 #'
@@ -60,7 +60,7 @@
 #'   \item{Stop}{    num  70008 139379 368634 622034 ...}
 #'   \item{Length}{  num  918 4479 995 939 606 ...}
 #' }
-"genes_annot"
+"GSE112679_genes_annot"
 
 
 
